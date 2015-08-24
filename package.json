@@ -1,18 +1,22 @@
 {
-  "name": "virtual-dom-experiment",
-  "version": "0.0.1",
+  "name": "iso-app",
+  "version": "1.0.0",
+  "description": "An isomorphic app.",
+  "main": "lib/server/application.js",
+  "browser": "lib/client/application.js",
   "dependencies": {
-    "component-emitter": "^1.2.0",
     "deep-equal": "^1.0.0",
     "extend": "^3.0.0",
-    "path-to-regexp": "^1.2.0",
-    "vdom-to-html": "^2.1.1",
-    "vdom-virtualize": "0.0.10",
-    "virtual-dom": "^2.0.1"
+    "path-to-regexp": "^1.2.0"
+  },
+  "devDependencies": {
+    "babel": "^5.8.21",
+    "babelify": "^6.2.0",
+    "express": "^4.13.3",
+    "iso-app-renderer-react": "^1.0.0",
+    "react": "^0.13.3"
   },
   "scripts": {
-    "watch": "watchify example/client.js -o example/client.build.js"
-  },
-  "main": "lib/application.server.js",
-  "browser": "lib/application.client.js"
+    "watch": "watchify -t babelify example/client.js -o example/client.build.js"
+  }
 }

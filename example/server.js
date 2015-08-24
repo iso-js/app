@@ -1,10 +1,18 @@
-var http    = require('http');
-var app     = require('./bootstrap');
+require('babel/register');
+var express = require('express');
 
-var server  = http.createServer(function(req, res) {
+var exp = express();
+var app = require('./bootstrap');
+
+exp.use(express.static(__dirname));
+
+exp.use(function(req, res) {
   app.handle(req, res);
 });
 
-server.listen(1337, '127.0.0.1');
+var server = exp.listen(3000, 'localhost', function () {
+  var host = server.address().address;
+  var port = server.address().port;
+  console.log('App running at http://%s:%s', host, port);
+});
 
-console.log('App running on 127.0.0.1:1337');

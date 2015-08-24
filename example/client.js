@@ -1,3 +1,4 @@
+console.log('hi!');
 var app = require('./bootstrap');
 
-app.mount(document.body);
+app.attach(document.body);
