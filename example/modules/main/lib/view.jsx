@@ -26,12 +26,14 @@ class SearchForm extends React.Component {
       <button>Submit</button>
     </form>;
   }
+
 }
 
 class SearchResults extends React.Component {
   render() {
     return <div className="search-result">
       <h1>Search Results</h1>
+      <p>Found <i>{this.props.results.length}</i> results:</p>
       <ul>
         {this.props.results.map(function(result) {
           return <li key={result.ISBN}>{result.title}</li>
