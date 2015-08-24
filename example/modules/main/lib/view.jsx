@@ -1,14 +1,14 @@
 var React = require('react');
+var books = require('./model');
 
 class SearchForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {count: props.query};
+    this.state = {query: props.query};
   }
 
   handleSubmit(event) {
-    console.log('SUBMIT', this.props);
     event.preventDefault();
     this.props.onSearch(this.state.query);
   }
@@ -42,11 +42,27 @@ class SearchResults extends React.Component {
 }
 
 class Search extends React.Component {
+
+  constructor() {
+    super();
+    this.state = {
+      query:    '',
+      results:  books
+    };
+  }
+
+  handleSearch(query) {
+    this.setState({
+      results: books.filter(function(book) {
+        return book.title.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+      })
+    });
+  }
+
   render() {
-    console.log(this.props);
     return <div>
-        <SearchForm query={this.props.query} onSearch={this.props.handleSearch}/>
-        <SearchResults results={this.props.results}/>
+        <SearchForm query={this.state.query} onSearch={this.handleSearch.bind(this)}/>
+        <SearchResults results={this.state.results}/>
         <script src="client.build.js"></script>
     </div>;
   }
