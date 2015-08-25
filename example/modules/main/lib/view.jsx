@@ -43,7 +43,7 @@ class SearchResults extends React.Component {
   }
 }
 
-class Search extends React.Component {
+class SearchPage extends React.Component {
 
   constructor() {
     super();
@@ -51,6 +51,10 @@ class Search extends React.Component {
       query:    '',
       results:  books
     };
+  }
+
+  getChildContext() {
+    return {};
   }
 
   handleSearch(query) {
@@ -70,4 +74,4 @@ class Search extends React.Component {
   }
 };
 
-module.exports = React.createFactory(Search);
+module.exports = React.createFactory(SearchPage);
